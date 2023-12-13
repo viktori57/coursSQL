@@ -72,3 +72,14 @@ INSERT INTO commande (client_id, date_achat, reference, cache_prix_total) VALUES
 (1, '2023-12-12 10:10:10', '001471', 100),
 (1, '2023-12-12 10:10:10', '001471', 100);
 
+CREATE TABLE IF NOT EXISTS produit (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    quantite INT(11) NOT NULL,
+    prix FLOAT NOT NULL
+);
+
+INSERT INTO produit (nom, quantite, prix) VALUES 
+('Pomme', 10, 50),
+('Casse Noisette', 100, 100),
+('Noisette', 1000, 2);

@@ -17,7 +17,7 @@ CREATE TABLE "table" (
     colonne2 type_donnee,
     colonne3 type_donnee
 );
-Exemple concret
+### Exemple concret
 
 CREATE TABLE utilisateur (
     id INT PRIMARY KEY NOT NULL,
@@ -58,3 +58,7 @@ ALTER TABLE nomTable
     CHANGE nomColonneChien nomColonneChat 
 ;
 Alter table permet de modifier une colonne de la table défini dans mon cas juste au dessus je défini la colonne nomColonne comme clé primaire
+
+# Clé Etrangère 
+Une clé etrangère c'est quand une colonne d'une table fait réference à une clé primaire d'une autre table
+Ils servent à faire en sorte que si on supprime le client de la base de donnée ca supprimera automatiquement toute ces commandes qu'il à effectué
