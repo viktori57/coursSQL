@@ -83,3 +83,5 @@ INSERT INTO produit (nom, quantite, prix) VALUES
 ('Pomme', 10, 50),
 ('Casse Noisette', 100, 100),
 ('Noisette', 1000, 2);
+
+pour supprimer une table il faut faire DROP TABLE (nom de la table); dans mysql
