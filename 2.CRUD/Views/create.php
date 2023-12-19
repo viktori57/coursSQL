@@ -1,21 +1,34 @@
-<?php
-include("../Controllers/create_ctrl.php")
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Ajouter un Livre</title>
-    <link rel="stylesheet" href="../functions/style.css">
+    <meta charset="UTF-8">
+    <title>Créer un livre</title>
+    <style> 
+        form {
+            width: 50%;
+            margin: 100px auto;
+        }
+        form * {
+            margin: 5px;
+            padding: 10px;
+        }
+
+    </style>
 </head>
 <body>
-    <h2>Ajouter un Livre</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        Titre: <input type="text" name="titre" required><br>
-        ISBN: <input type="text" name="ISBN" required><br>
-        Résumé: <textarea name="resume" required></textarea><br>
-        <input type="submit" value="Créer">
+<form action="../Controllers/create_ctrl.php" method='post'>
+        <fieldset>
+            <legend>Créer un livre</legend>
+            <pre>
+                <label for="titre">Titre :</label>
+                <input type="text" name="titre" id="titre">
+                <label for="isbn">ISBN :</label>
+                <input type="text" name="isbn" id="isbn" maxlength="49" pattern='{0,50}'>
+                <label for="resume">Résumé :</label>
+                <textarea name="resume" id="resume" cols="30" rows="10"></textarea>
+                <input type="submit" value="créer">
+            </pre>
+        </fieldset>
     </form>
-    <a href="../index.php">Page d'accueil</a>
 </body>
 </html>

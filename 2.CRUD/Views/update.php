@@ -1,26 +1,47 @@
-<?php
-include("../functions/bdd.php");
-include("../Controllers/update_ctrl.php");
-?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Modifier un Livre</title>
-    <link rel="stylesheet" href="../functions/style.css">
+    <meta charset="UTF-8">
+    <title>Modifier Un Livre</title>
+    <style> 
+        form {
+            width: 50%;
+            margin: 100px auto;
+        }
+        form * {
+            margin: 5px;
+            padding: 10px;
+        }
+
+    </style>
 </head>
 <body>
-    <?php if (isset($livre)): ?>
-        <h2>Modifier un Livre</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="hidden" name="id" value="<?php echo $livre['id']; ?>">
-            Titre: <input type="text" name="titre" value="<?php echo htmlspecialchars($livre['titre']); ?>" required><br>
-            ISBN: <input type="text" name="ISBN" value="<?php echo htmlspecialchars($livre['ISBN']); ?>" required><br>
-            Résumé: <textarea name="resume" required><?php echo htmlspecialchars($livre['resume']); ?></textarea><br>
-            <input type="submit" value="Modifier">
-        </form>
-    <?php else: ?>
-        <p></p>
-    <?php endif; ?>
-    <a href="../index.php">Page d'accueil</a>
+    <?php
+    require_once('../function/db.php');
+    if (isset($_POST) && !empty($_POST)) {
+        $update = $bdd->prepare('SELECT * FROM livre WHERE id=?');
+        $update->execute(array(
+            $_POST['update']
+        ));
+        $update = $update->fetch(PDO::FETCH_ASSOC);
+    }
+    ?>
+    <form action="../Controllers/update_ctrl.php" method='post'>
+        <fieldset>
+            <legend>Modifier un livre</legend>
+            <pre>
+                <label for="id">ID :</label>
+                <input type="number" name="id" id="id" readonly value="<?php echo $update['id'] ?>">
+                <label for="titre">Titre :</label>
+                <input type="text" name="titre" id="titre" value="<?php echo $update['titre'] ?>">
+                <label for="isbn">ISBN :</label>
+                <input type="text" name="isbn" id="isbn" maxlength="49" pattern='{0,50}' value="<?php echo $update['ISBN'] ?>">
+                <label for="resume">Résumé :</label>
+                <textarea name="resume" id="resume" cols="30" rows="10"><?php echo $update['résumé'] ?></textarea>
+                <input type="submit" value="Modifier">
+            </pre>
+        </fieldset>
+    </form>
+    
 </body>
 </html>
