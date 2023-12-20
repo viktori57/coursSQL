@@ -16,16 +16,11 @@
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="./index.php">Listes des livres</a></li>
-        </ul>
-    </nav>
-    <script>
-
-    </script>
+    
+    
     <form action="./Views/update.php" method="POST" id='form'>
     <button formaction='./Views/create.php'>Créer un nouveau livre</button>
+    <button formaction='./Views/read.php'>Liste des livres</button>
         <table>
             <tr>
                 <th>ID</th>
