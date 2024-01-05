@@ -1,25 +1,18 @@
 <?php
-require_once('../function/db.php');
-
+$bdd = new PDO
+(
+    'mysql:host=localhost; dbname=bateau; charset=utf8;',
+    'viktor',
+    'Azerty123'
+);
 
 if (isset($_POST) && !empty($_POST)) {
-    $select = $bdd->prepare('SELECT * FROM livre WHERE ISBN=?');
-    $select->execute(array(
-        $_POST['isbn']
+    $insert = $bdd->prepare('INSERT INTO bateaux (nom, modele, taille, proprietaire) VALUES (?, ?, ?, ?)');
+    $insert->execute(array(
+        $_POST['nom'],
+        $_POST['modele'],
+        $_POST['taille'],
+        $_POST['owner'],
     ));
-    $select = $select->rowCount();
-
-    if ($select < 1) {
-        $create = $bdd->prepare('INSERT INTO bateaux (titre, ISBN, résumé) VALUES (?, ?, ?)');
-        $create->execute(array(
-            $_POST['titre'],
-            $_POST['isbn'],
-            $_POST['resume']
-        ));
-    } else {
-        echo '<script>
-                alert("Ce ISBN existe déjà !"); 
-                window.location.replace("../index.php")
-            </script>';
-    }
-}
+}    
+header('Location: ../index.php');

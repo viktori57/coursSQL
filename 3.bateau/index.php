@@ -4,18 +4,33 @@
     <meta charset="UTF-8">
     <title>Gérer les bateaux</title>
     <style>
+        table {
+            margin: 50px auto;
+        }
         table,tr,th,td {
-            border: 1px solid black;
+            border: 1px solid #747779;
             border-collapse: collapse;
             padding: 20px;            
         }
-        th, td {            
-            width: 200px;
+        th, td {   
+            font-weight: bolder;
+            text-align: center;         
+            width: 250px;
+        }
+        th {
+            color: blue;
+        }
+        button {
+            padding: 15px;
+            border-radius: 30px;
+            margin: 5px;
+            background-color: lightblue;
         }
     </style>
 </head>
 <body>
-    <form action="">
+    <form id="form" action="./Views/update.php" method='POST'>
+    <button formaction="./Views/create.php">Créer un bateau</button>
         <table>
             <tr>
                 <th>ID</th>
@@ -39,6 +54,27 @@
                     echo "</tr>";
                 }
             ?>
+            <script>
+                // Dans la fonction addEventListener la première valeur que on rentre est une valeur de JS
+                document.getElementById("form").addEventListener("submit", function(eventData){
+                    if (eventData.submitter.name == "delete") {
+                        var conf = confirm("Voulez vous vraiment supprimer ce bateau ?");
+                        if (conf) {
+                            conf = confirm("Vous etes vraiment sur ?");
+                            if (conf) {
+                                conf = confirm("Vraiment vraiment ?");
+                                if (!conf) {
+                                    eventData.preventDefault();
+                                }
+                            } else {
+                                eventData.preventDefault();    
+                            }
+                        } else {
+                            eventData.preventDefault();
+                        }
+                    }
+                })
+            </script>
         </table>
     </form>
 </body>

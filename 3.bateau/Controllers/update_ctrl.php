@@ -1,14 +1,19 @@
 <?php
-require_once('../function/db.php');
-
+$bdd = new PDO
+(
+    'mysql:host=localhost; dbname=bateau; charset=utf8;',
+    'viktor',
+    'Azerty123'
+);
 
 if (isset($_POST) && !empty($_POST)) {
-    $update = $bdd->prepare('UPDATE livre SET titre=?, ISBN=?, résumé=? WHERE id=?');
+    $update = $bdd->prepare('UPDATE bateaux SET nom=?, modele=?, taille=?, proprietaire=? WHERE id=?');
     $update->execute(array(
-        $_POST['titre'],
-        $_POST['isbn'],
-        $_POST['resume'],
-        $_POST['id']
+        $_POST['nom'],
+        $_POST['modele'],
+        $_POST['taille'],
+        $_POST['owner'],
+        $_POST["id"]
     ));
-}
+}    
 header('Location: ../index.php');
